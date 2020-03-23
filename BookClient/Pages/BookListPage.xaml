@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:BookClient.Helpers"
+             x:Class="BookClient.Pages.BookListPage"
+             x:Name="RootPage"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
+             Title="BookList"
+             Icon="Contacts.png"
+             Padding="0,0,0,0">
+<Grid>
+       
+        <StackLayout Orientation="Vertical">
+            <Button Text="&#xf055;" Style="{StaticResource FontAwesomeSolid}" Command="{Binding AddCommand}" />
+            <!--<Button Text="&#xf021;" Style="{StaticResource FontAwesomeSolid}" Clicked="OnRefresh" />-->            
+            <ListView ItemsSource="{Binding Books}"
+                      local:ItemTappedAttached.Command="{Binding TapCommand}"
+                      IsPullToRefreshEnabled="true"
+                      RefreshCommand="{Binding RefreshCommand}"
+                      IsRefreshing="{Binding IsRefreshing}">
+                <ListView.Behaviors>
+                    <!--<local:EventToCommandBehavior EventName="ItemSelected"
+                                    Command="{Binding EditCommand}" 
+                                    Converter="{StaticResource SelectedItemConverter}" />-->
+                </ListView.Behaviors>
+                <ListView.ItemTemplate>                    
+                    <DataTemplate>
+                        <TextCell Text="{Binding Title}" Detail="{Binding Genre}">
+                            <TextCell.ContextActions>
+                                <!--
+                                    The binding context for the page is the BookListPageModel.
+                                    The binding context for the MenuItem is the BookPageModel being displayed in the cell.
+                                    The MainPageModel is assigned to the Page.BindingContext property. 
+                                -->
+                                <MenuItem Text="Delete" IsDestructive="True" 
+                                          Command="{Binding BindingContext.DeleteCommand, Source={x:Reference RootPage}}" 
+                                          CommandParameter="{Binding}"/>
+                            </TextCell.ContextActions>
+                        </TextCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+                
+        <!-- Challenge exercise - add Activity Indicator -->
+        <StackLayout IsVisible="{Binding Source={x:Reference RootPage}, Path=IsBusy}"
+                    HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Padding="20">
+            <Label Text="Loading Data..." TextColor="Gray" HorizontalOptions="Center" />
+            <ActivityIndicator IsRunning="{Binding Source={x:Reference RootPage}, Path=IsBusy}" Color="Accent" >
+            </ActivityIndicator>
+        </StackLayout>
+        
+</Grid>
+    
+</ContentPage>

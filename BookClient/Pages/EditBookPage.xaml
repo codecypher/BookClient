@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="BookClient.Pages.EditBookPage"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
+             Title="{Binding Book.Title}">
+    <ContentPage.Content>
+        <StackLayout Spacing="0">
+            <TableView x:Name="tableView" Intent="Form">
+                <TableRoot x:Name="tableRoot" Title="Edit Book">
+                    <TableSection Title="Edit Book Details">
+<!--                        
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal" Padding="15,10,0,0">
+                                <Label Text="ISBN" />
+                                <Label x:Name="isbnLabel" />
+                            </StackLayout>
+                        </ViewCell>
+-->
+                        <EntryCell Label="ISBN" Text="{Binding ISBN}" IsEnabled="False" />
+                        <EntryCell Label="Title" Text="{Binding Title}" Placeholder="Add Title" />
+                        <EntryCell Label="Genre" Text="{Binding Genre}" Placeholder="Add Genre" />
+                        <EntryCell Label="Author" Text="{Binding Author}"  Placeholder="Add Author" />
+                    </TableSection>
+                </TableRoot>
+            </TableView>
+            <Button Command="{Binding UpdateCommand}" Text="Save" />      
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:BookClient"
+             xmlns:val="clr-namespace:BookClient.Validators"
+             xmlns:model="clr-namespace:BookClient.PageModels"
+             xmlns:controls="clr-namespace:BookClient.Controls;assembly=BookClient"
+             x:Class="BookClient.Pages.FluentPage"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
+             Title="Fluent"
+             Icon="Edit.png">
+    <ContentPage.Padding>
+        <OnPlatform x:TypeArguments="Thickness">
+            <On Platform="iOS">20</On>
+            <On Platform="Android, UWP">20, 40, 20, 0</On>
+        </OnPlatform>
+    </ContentPage.Padding>
+
+    <ContentPage.Content>
+
+        <StackLayout>
+            <Label Text="UserName" />
+            <!--<Entry Text="{Binding UserName}" />-->
+            <controls:ExtendedEntry Text="{Binding UserName}"
+                                    ValidatesOnDataErrors="True" />
+            <Label Text="Password" />
+            <controls:ExtendedEntry IsPassword="True"
+                                    Text="{Binding Password}"
+                                    ValidatesOnDataErrors="True" />
+            <Label Text="Confirm Password"></Label>
+            <controls:ExtendedEntry IsPassword="True"
+                                    Text="{Binding ConfirmPassword}"
+                                    ValidatesOnDataErrors="True" />
+
+            <Label Text="Email"></Label>
+            <!--<Entry Text="{Binding Email}" />-->
+            <controls:ExtendedEntry Text="{Binding Email}"
+                                    ValidatesOnDataErrors="True"
+                                    Keyboard="Email" />
+            <Button Text="Signup"
+                    Command="{Binding SignUpCommand}"
+                    IsEnabled="{Binding IsValid}" />
+            <Label Text="{Binding ValidationMessage, Mode=TwoWay}"
+                   TextColor="{Binding Color, Mode=TwoWay}" />
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>     
+    

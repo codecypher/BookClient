@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:cvt="clr-namespace:BookClient.Converters;assembly=BookClient"
+             xmlns:local="clr-namespace:BookClient.Helpers"
+             x:Class="BookClient.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <cvt:SelectedItemEventArgsToSelectedItemConverter x:Key="SelectedItemConverter" />
+            <cvt:ItemTappedValueConverter x:Key="ItemTappedConverter" />
+            
+            <Style x:Key="baseLabelStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="22" />
+            </Style>
+
+            <Style x:Key="infoLabelStyle" BasedOn="{StaticResource baseLabelStyle}" TargetType="Label">
+                <Setter Property="FontAttributes" Value="Bold" />
+            </Style>
+
+            <OnPlatform  x:Key="FontAwesomeRegularString" 
+                         x:TypeArguments="x:String"
+                         Android="fa-regular-400.ttf#Font Awesome 5 Free Regular"
+                         iOS="Font Awesome 5 Free"
+                         WinPhone="Assets/fa-regular-400.ttf#Font Awesome 5 Free" />
+
+            <OnPlatform  x:Key="FontAwesomeSolidString" 
+                         x:TypeArguments="x:String"
+                         Android="fa-solid-900.ttf#Font Awesome 5 Free Solid"
+                         iOS="Font Awesome 5 Free"
+                         WinPhone="Assets/fa-solid-900.ttf#Font Awesome 5 Free" />
+
+            <OnPlatform  x:Key="FontAwesomeBrandString" 
+                         x:TypeArguments="x:String"
+                         Android="fa-brands-400.ttf#Font Awesome 5 Free Brand"
+                         iOS="Font Awesome 5 Free"
+                         WinPhone="Assets/fa-brands-400.ttf#Font Awesome 5 Free" />
+
+            <Style x:Key="FontAwesomeRegular" TargetType="Button">
+                <Setter Property="FontFamily" Value="{StaticResource FontAwesomeRegularString}" />
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="BackgroundColor" Value="White" />
+            </Style>
+            
+            <Style x:Key="FontAwesomeSolid" TargetType="Button">
+                <Setter Property="FontFamily" Value="{StaticResource FontAwesomeSolidString}" />
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="BackgroundColor" Value="White" />
+            </Style>
+            
+            <Style x:Key="FontAwesomeBrand" TargetType="Button">
+                <Setter Property="FontFamily" Value="{StaticResource FontAwesomeBrandString}" />
+                <Setter Property="FontSize" Value="Medium" />
+                <Setter Property="BackgroundColor" Value="White" />
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

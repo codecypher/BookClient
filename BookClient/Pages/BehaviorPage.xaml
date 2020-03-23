@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:BookClient.PageModels"
+             xmlns:validators="clr-namespace:BookClient.Validators"
+             x:Class="BookClient.Pages.BehaviorPage" 
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
+             Title="Behavior"
+             Icon="Run.png"
+             Padding="0,40,0,0">
+    <ContentPage.Content>
+        <StackLayout Spacing="0">
+            <!--
+            <TableView x:Name="tableView" Intent="Form">
+                <TableRoot x:Name="tableRoot" Title="Edit Book">
+                    <TableSection Title="Details">
+                        <EntryCell x:Name="numberCell" Label="Square Root" Text="100" Keyboard="Numeric">
+                        </EntryCell>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal" Padding="15,10,0,0">
+                                <Label Text="Answer" />
+                                <Label Text="{Binding SquareRootWithParameterResult}" />
+                            </StackLayout>
+                        </ViewCell>
+                    </TableSection>
+                </TableRoot>
+            </TableView>
+            -->
+
+
+            <Grid Padding="20">
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <!-- Note: this is the default -->
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="2*" />
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Row="2" Grid.Column="0" Text="Numeric" VerticalOptions="Center" />
+                <Entry Grid.Row="2" Grid.Column="1" Placeholder="Enter System.Double">
+                    <Entry.Behaviors>
+                        <validators:NumericValidationBehavior />
+                    </Entry.Behaviors>
+                </Entry>
+
+                <Label Grid.Row="3" Grid.Column="0" Text="Age" FontSize="Small" />
+                <Entry Grid.Row="3" Grid.Column="1" Placeholder="Age" FontSize="Small">
+                    <Entry.Behaviors>
+                        <validators:MaxLengthValidatorBehavior  MaxLength="2"/>
+                        <validators:NumericValidationBehavior/>
+                    </Entry.Behaviors>
+                </Entry>
+
+                <Label Grid.Row="4" Grid.Column="0" Text="DOB" FontSize="Small" />
+                <DatePicker Grid.Row="4" Grid.Column="1">
+                    <DatePicker.Behaviors>
+                        <validators:DateValidationBehavior/>
+                    </DatePicker.Behaviors>
+                </DatePicker>
+
+                <Label Grid.Row="5" Grid.Column="0" Text="Password" FontSize="Small" />
+                <Entry Grid.Row="5" Grid.Column="1" x:Name="txtpassword" IsPassword="True" Placeholder="Enter Your Password" >
+                    <Entry.Behaviors>
+                        <validators:PasswordValidationBehavior />
+                    </Entry.Behaviors>
+                </Entry>
+
+                <Label Grid.Row="6" Grid.Column="0" Text="PasswordCompare" VerticalOptions="Center" />
+                <Entry Grid.Row="6" Grid.Column="1" IsPassword="True" Placeholder="Enter same as above" >
+                    <Entry.Behaviors>
+                        <validators:PasswordValidationBehavior />
+                        <!--<validators:CompareValidationBehavior BindingContext="{x:Reference txtpassword}" Text="{Binding Text}"/>-->
+                    </Entry.Behaviors>
+                </Entry>
+                
+<!--                <Button x:Name="finishButton" Text="Finished" Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" />-->
+                
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

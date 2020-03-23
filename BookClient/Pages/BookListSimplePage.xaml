@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:BookClient.PageModels"
+             x:Class="BookClient.Pages.BookListSimplePage" 
+             Title="BookListSimple"
+             Padding="0,40,0,0">
+    <ContentPage.Content>
+        <Grid Margin="10">
+            <!--<Grid.BindingContext>
+                <model:BookCollectionViewModel />
+            </Grid.BindingContext>-->
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <!-- New Button -->
+            <Button Text="New"
+                Grid.Row="0"
+                Command="{Binding NewCommand}"
+                HorizontalOptions="Start" />
+
+            <!-- Entry Form -->
+            <Grid Grid.Row="1" IsEnabled="{Binding IsEditing}">
+                <Grid BindingContext="{Binding BookEdit}">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="Title: " Grid.Row="0" Grid.Column="0" />
+                    <Entry Text="{Binding Book.Title}" Grid.Row="0" Grid.Column="1" />
+
+                    <Label Text="Genre: " Grid.Row="1" Grid.Column="0" />
+                    <Entry Text="{Binding Book.Genre}" Grid.Row="1" Grid.Column="1" />
+
+                    <Label Text="Author: " Grid.Row="2" Grid.Column="0" />
+                    <Entry Text="{Binding Book.Author}" Grid.Row="2" Grid.Column="1" />
+
+                    <!--<Stepper Value="{Binding Age}" Maximum="100" />-->
+                    <!--<Label Text="{Binding Age, StringFormat='{0} years old'}" VerticalOptions="Center" />-->
+                </Grid>
+            </Grid>
+
+            <!-- Submit and Cancel Buttons -->
+            <Grid Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Button Text="Submit"
+                    Grid.Row="0" Grid.Column="0"
+                    Command="{Binding SubmitCommand}"
+                    VerticalOptions="CenterAndExpand" />
+
+                <Button Text="Cancel"
+                    Grid.Row="0" Grid.Column="1"
+                    Command="{Binding CancelCommand}"
+                    VerticalOptions="CenterAndExpand" />
+
+                <Button x:Name="finishButton" Text="Finished" 
+                        Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" />    
+            </Grid>
+            
+            <!-- List of Books -->
+            <ListView Grid.Row="3" ItemsSource="{Binding Books}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding Book.Title}" Detail="{Binding Book.Genre}">
+                        </TextCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

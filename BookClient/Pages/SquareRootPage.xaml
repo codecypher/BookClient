@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:model="clr-namespace:BookClient.PageModels"
+             xmlns:validators="clr-namespace:BookClient.Validators"
+             x:Class="BookClient.Pages.SquareRootPage"
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
+             Title="SquareRoot"
+             Icon="Calculator.png"
+             Padding="10,40,10,0">
+
+    <!--<ContentPage.BindingContext>
+    </ContentPage.BindingContext>-->
+
+    <ContentPage.Content>
+
+        <StackLayout Spacing="0">
+            <!--<TableView x:Name="tableView" Intent="Form">
+                <TableRoot x:Name="tableRoot" Title="Edit Book">
+                    <TableSection Title="Details">
+                        <EntryCell x:Name="numberCell" Label="Square Root" Text="100" Keyboard="Numeric">
+                        </EntryCell>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal" Padding="15,10,0,0">
+                                <Label Text="Answer" />
+                                <Label Text="{Binding SquareRootWithParameterResult}" />
+                            </StackLayout>
+                        </ViewCell>
+                    </TableSection>
+                </TableRoot>
+            </TableView>-->
+
+            <Label Text="Demo 2 - Command with Parameter"
+                   FontAttributes="Bold" />
+            <Grid Padding="10">
+                <Grid.BindingContext>
+                    <model:SquareRootPageModel />
+                </Grid.BindingContext>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <!-- Note: this is the default -->
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="2*" />
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Row="0"
+                       Grid.Column="0"
+                       Text="Square Root"
+                       VerticalOptions="Center" />
+                <Entry Grid.Row="0"
+                       Grid.Column="1"
+                       x:Name="numberCell"
+                       Text="100"
+                       Keyboard="Numeric" />
+
+                <Label Grid.Row="1"
+                       Grid.Column="0"
+                       Text="Answer"
+                       VerticalOptions="Center" />
+                <Label Grid.Row="1"
+                       Grid.Column="1"
+                       Text="{Binding SquareRootWithParameterResult}"
+                       VerticalOptions="Center" />
+
+                <Button Grid.Row="2"
+                        Grid.ColumnSpan="2"
+                        Text="Calculate Square Root"
+                        Command="{Binding SquareRootWithParameterCommand}"
+                        CommandParameter="{Binding Source={x:Reference numberCell}, Path=Text}"
+                        HorizontalOptions="Center" />
+            </Grid>
+
+            <Label Text="Demo 3 - Async Command with CanExecute"
+                   FontAttributes="Bold" />
+            <StackLayout>
+                <StackLayout.BindingContext>
+                    <model:DemoPageModel />
+                </StackLayout.BindingContext>
+                <Button Text="Simulate 5 Second Download"
+                        HorizontalOptions="Center"
+                        Command="{Binding SimulateDownloadCommand}" />
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Result: " />
+                    <Label Text="{Binding SimulatedDownloadResult}" />
+                </StackLayout>
+                <!--<Button x:Name="finishButton" Text="Finished" />-->
+            </StackLayout>
+        </StackLayout>
+
+    </ContentPage.Content>
+
+</ContentPage>

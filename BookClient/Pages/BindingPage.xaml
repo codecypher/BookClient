@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:BookClient.Models"
+             xmlns:sys="clr-namespace:System;assembly=netstandard"
+             x:Class="BookClient.Pages.BindingPage" 
+             xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
+             ios:Page.UseSafeArea="true"
+             Title="Binding"
+             Icon="Bookmark.png"
+             Padding="10,40,10,0">
+    <ContentPage.Content>
+        
+        <StackLayout Padding="10, 0">
+            <StackLayout>
+                <Label x:Name="label"
+                    Text="TEXT"
+                    FontSize="40"
+                    HorizontalOptions="Center"
+                    VerticalOptions="CenterAndExpand" />
+
+                <!-- 
+                    At first, this might seem backwards: Now the Label is the data-binding source, 
+                    and the Slider is the target. The binding references the Scale property of the Label, 
+                    which has a default value of 1.
+                -->
+                <Slider x:Name="slider"
+                    Minimum="-2"
+                    Maximum="2"
+                    VerticalOptions="CenterAndExpand"
+                    Value="{Binding Source={x:Reference label}, Path=Scale}" />
+
+                <Label Text="{Binding Source={x:Static sys:Math.PI}, StringFormat='Pi is {0:F2}'}" />
+            </StackLayout>
+
+            <StackLayout BindingContext="{x:Static sys:Math.PI}">
+                <Label Text="{Binding}" />
+                <Label Text="{Binding StringFormat='PI to 4 decimal points = {0:F4}'}" />
+                <Label Text="{Binding StringFormat='PI in scientific notation = {0:E7}'}" />
+            </StackLayout>
+
+            <StackLayout>
+                <StackLayout.BindingContext>
+                    <local:Book ISBN="12345" Title="Huck Finn" Genre="Adventure" PublishDate="01/01/2014" />
+                </StackLayout.BindingContext>
+
+                <StackLayout Margin="10, 0">
+                    <Label Text="{Binding ISBN}" />
+                    <Label Text="{Binding Title}" />
+                    <Label Text="{Binding Genre}" />
+                    <Label Text="{Binding PublishDate, StringFormat='{0:MM/dd/yyyy}'}" />
+
+                    <!--
+                    <Slider Value="{Binding Hue}" />
+                    <Label Text="{Binding Hue, StringFormat='Hue = {0:F2}'}" />
+                    -->
+                </StackLayout>
+
+            </StackLayout>
+
+            <StackLayout>
+                <StackLayout Margin="10, 0">
+                    <Picker SelectedItem="{Binding Country, Mode=TwoWay}" />
+
+                    <Label Text="Current Design was Adopted on" FontAttributes="Bold" />
+                    <DatePicker MinimumDate="01/01/1700" HorizontalOptions="Start" 
+                                Date="{Binding DateAdopted, Mode=TwoWay}" />
+
+                    <Label Text="Has Shield" FontAttributes="Bold" />
+                    <Switch IsToggled="{Binding IncludesShield, Mode=TwoWay}" />
+
+                    <Label Text="Fun Fact" FontAttributes="Bold" />
+                    <Label Text="{Binding Description}" />
+
+                    <Button Text="Show" Clicked="OnShow" />
+                </StackLayout>
+
+            </StackLayout>
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>

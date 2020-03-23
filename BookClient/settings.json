@@ -1,0 +1,5 @@
+{
+  "LocalUrl": "https://localhost:5001/api/books/",
+  "SiteUrl": "http://cogentcoder.com:8100/api/books/",
+  "FakeUrl": "http://fakerestapi.azurewebsites.net/api/books/"
+}
