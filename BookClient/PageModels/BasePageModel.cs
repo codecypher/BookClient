@@ -42,9 +42,11 @@ namespace BookClient.PageModels
 
         public virtual ValidationResult ValidateProperty([CallerMemberName] string propertyName = null)
         {
+            string message = "An instance of IValidator must be passed into the constructor of your ViewModel in order to call ValidateProperty";
             if (_validator == null)
-                throw new NullReferenceException("An instance of IValidator must be passed into the constructor of your ViewModel in order to call ValidateProperty");
-            var result = _validator.Validate(this);
+                throw new NullReferenceException(message);
+            var context = new ValidationContext<BasePageModel>(this);
+            var result = _validator.Validate(context);
             HandleValidationResultForProperty(result, propertyName);
             return result;
         }
@@ -66,7 +68,8 @@ namespace BookClient.PageModels
             var isPropertyValid = result.Errors.All(err => err.PropertyName != validationPropertyName);
             if (!isPropertyValid)
             {
-                var errors = result.Errors.Where(e => e.PropertyName == validationPropertyName).Select(error => error.ErrorMessage).ToList();
+                var errors = result.Errors.Where(e => e.PropertyName == validationPropertyName)
+                    .Select(error => error.ErrorMessage).ToList();
                 Errors[propertyName] = errors;
             }
             else

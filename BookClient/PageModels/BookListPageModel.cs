@@ -1,20 +1,16 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
+﻿using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using BookClient.Helpers;
 using BookClient.Models;
 using BookClient.Services;
 using FluentValidation;
-using FreshMvvm;
 using Xamarin.Forms;
 
 namespace BookClient.PageModels
 {
     // Xamarin Forms with MVVM Light
     // https://mobileprogrammerblog.wordpress.com/2017/01/21/xamarin-forms-with-mvvm-light/
-    // XAM320 - Design an MVVM ViewModel in Xamarin.Forms 
+    // XAM320 - Design an MVVM ViewModel in Xamarin.Forms
     // https://elearning.xamarin.com/forms/xam320/
     public class BookListPageModel : BaseBookPageModel
     {

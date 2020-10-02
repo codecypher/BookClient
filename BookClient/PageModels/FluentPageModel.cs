@@ -1,15 +1,16 @@
 ﻿using BookClient.Models;
 using BookClient.Validators;
 using FluentValidation;
-using FreshMvvm;
 using Xamarin.Forms;
 
 namespace BookClient.PageModels
 {
     // Fluent Validation With MVVM In Xamarin Forms Application
     // https://www.c-sharpcorner.com/article/fluent-validation-with-mvvm-in-xamarin-forms-application/
+
     // Fluent Validation: How to validate Registration Page fields in Xamarin Forms
     // https://bsubramanyamraju.blogspot.com/2018/03/fluent-validation-how-to-validate.html
+
     // Realtime Validation in Xamarin Forms with FluentValidation
     // https://chaseflorell.github.io/xamarin/2017/10/04/realtime-validation-in-xamarin-forms-with-fluentvalidation/
     [PropertyChanged.AddINotifyPropertyChangedInterface]
@@ -86,18 +87,18 @@ namespace BookClient.PageModels
             set { _signupCommand = value; }
         }
 
-        private string _validateMessage;    
-        public string ValidateMessage  
-        {  
-            get  
-            {  
-                return _validateMessage;  
-            }  
-            set  
+        private string _validateMessage;
+        public string ValidateMessage
+        {
+            get
+            {
+                return _validateMessage;
+            }
+            set
             {
                 _validateMessage = value;
-                //this.Set(ref this._validateMessage, value, "ValidateMessage");  
-            }  
+                //this.Set(ref this._validateMessage, value, "ValidateMessage");
+            }
         }
 
         protected void ExecuteSignUpCommand()
@@ -110,7 +111,9 @@ namespace BookClient.PageModels
             //    Email = _email
             //};
 
-            var validationResult = _validator.Validate(this);
+            var context = new ValidationContext<FluentPageModel>(this);
+            var validationResult = _validator.Validate(context);
+
             if (validationResult.IsValid)
             {
                 this.ValidateMessage = "Validation Success!!";

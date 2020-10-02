@@ -18,7 +18,7 @@ namespace BookClient.Services
         {
             string url = string.Empty;
 #if DEBUG
-            url = App.Settings.LocalUrl;
+            url = App.Settings.SiteUrl;
 #else
             url = App.Settings.SiteUrl;
 #endif
@@ -59,8 +59,7 @@ namespace BookClient.Services
                 //_authKey = JsonConvert.DeserializeObject<string>(_authKey);
             }
 
-
-            client.DefaultRequestHeaders.Add("Authorization", _authKey);         
+            client.DefaultRequestHeaders.Add("Authorization", _authKey);
             client.DefaultRequestHeaders.Add("Accept", "application/json");
 
             return client;

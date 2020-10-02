@@ -9,22 +9,22 @@ using FreshMvvm;
 namespace BookClient.PageModels
 {
     /// <summary>
-    /// The view model implements properties and commands to which the view can bind to, 
+    /// The view model implements properties and commands to which the view can bind to,
     /// and notifies the view of any state changes through change notification events.
-    /// The properties and commands that the view model provides define the functionality 
+    /// The properties and commands that the view model provides define the functionality
     /// to be offered by the UI, but the view determines how that functionality is to be displayed.
     /// Keep the UI responsive with asynchronous operations.
-    /// Use asynchronous methods for I/O operations and raise events to asynchronously 
+    /// Use asynchronous methods for I/O operations and raise events to asynchronously
     /// notify views of property changes.
     /// </summary>
-    /// 
+    ///
     // Getting Started With Xamarin Forms FreshMVVM Framework
     // http://bsubramanyamraju.blogspot.com/2018/03/getting-started-with-xamarin-forms.html
     // FreshMvvm Quick Start Guide
     // http://michaelridland.com/xamarin/freshmvvm-quick-start-guide/
     //
-    // The reason to say FreshMVVM is designed for Xamarin.Forms is because it plays on Xamarin.Forms 
-    // strengths and fills in only the missing parts. It has a requirement for Xamarin.Forms so it is 
+    // The reason to say FreshMVVM is designed for Xamarin.Forms is because it plays on Xamarin.Forms
+    // strengths and fills in only the missing parts. It has a requirement for Xamarin.Forms so it is
     // smart and can do things such as wiring up the BindingContext and Page events.
     //
     // IValidator: To validate contact object.
@@ -32,15 +32,9 @@ namespace BookClient.PageModels
     [PropertyChanged.AddINotifyPropertyChangedInterface]
     public class BaseBookPageModel : FreshBasePageModel
     {
-        #region Backing Fields
-
         protected Book _book;
         protected IBookManager _repository;
         protected IValidator _validator;
-
-        #endregion  // Backing Fields
-
-        #region Constructors
 
         public BaseBookPageModel(IBookManager bookManager, IValidator bookValidator)
         {
@@ -48,11 +42,6 @@ namespace BookClient.PageModels
             _repository = bookManager;
             _validator = bookValidator;
         }
-
-        #endregion  // Constructors
-
-
-        #region Properties
 
         protected static IList<Book> _books;
         public IList<Book> Books
@@ -131,7 +120,5 @@ namespace BookClient.PageModels
                 }
             }
         }
-
-        #endregion  // Properties
     }
 }

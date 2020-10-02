@@ -1,7 +1,5 @@
 ﻿using BookClient.Models;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -9,7 +7,7 @@ using Xamarin.Forms;
 namespace BookClient.PageModels
 {
     // Calling an Asynchronous Method
-    // The following code example shows a sample application command implementation 
+    // The following code example shows a sample application command implementation
     // that simulates a file downloading through an asynchronous method
     // https://blog.xamarin.com/simplifying-events-with-commanding/
     class DemoPageModel : ObservableObject

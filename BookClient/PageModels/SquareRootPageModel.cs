@@ -1,11 +1,7 @@
-﻿using BookClient.Models;
-using FreshMvvm;
+﻿using FreshMvvm;
 using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
-using PropertyChanged;
 
 namespace BookClient.PageModels
 {
